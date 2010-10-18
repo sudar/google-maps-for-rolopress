@@ -8,7 +8,12 @@
  * @subpackage Widget
  */
 
-// Get the address
+/**
+ * Get the address of a contact
+ *
+ * @param <type> $contact_id
+ * @return <type>
+ */
 function rolo_contact_address($contact_id) { // if contact get address
     if (!$contact_id) {
         return false;
@@ -20,6 +25,12 @@ function rolo_contact_address($contact_id) { // if contact get address
     return $contact['rolo_contact_address'] . " " . rolo_get_term_list($contact_id, 'city') . " " . rolo_get_term_list($contact_id, 'state') . " " . rolo_get_term_list($contact_id, 'country')  . " " . rolo_get_term_list($contact_id, 'zip');
 } 
 
+/**
+ * Get the address of a company
+ *
+ * @param <type> $company_id
+ * @return <type>
+ */
 function rolo_company_address($company_id) { // if company get address
     if (!$company_id) {
         return false;
@@ -47,22 +58,27 @@ class Rolo_Gmap extends WP_Widget {
             if ( rolo_type_is( 'contact' ) )  $address = ( rolo_contact_address(get_the_ID())) ;
             if ( rolo_type_is( 'company' ) )  $address = ( rolo_company_address(get_the_ID())) ;
 
-            $title = apply_filters('widget_title', empty($instance['title']) ? __('', 'rolopress') : $instance['title']);
-            echo $before_widget;
+            if ($address != '') {
+                // if the address is not empty
+                $title = apply_filters('widget_title', empty($instance['title']) ? __('', 'rolopress') : $instance['title']);
+                echo $before_widget;
 
-            if ( $title )
-                echo "\n\t\t\t" . $before_title . $title . $after_title;
+                if ( $title ) {
+                    echo "\n\t\t\t" . $before_title . $title . $after_title;
+                }
 
-            echo '<img src="http://maps.google.com/maps/api/staticmap?markers='.$address.'&zoom='.$instance['zoom'].'&maptype='.$instance['maptype'].'&size='.$instance['width'].'x'.$instance['height'].'&sensor=false" />';
-
-            echo $after_widget;
-
-
+                echo '<img src="http://maps.google.com/maps/api/staticmap?markers='.$address.'&zoom='.$instance['zoom'].'&maptype='.$instance['maptype'].'&size='.$instance['width'].'x'.$instance['height'].'&sensor=false" />';
+                echo $after_widget;
+            }
         }
     }
 
-
-
+    /**
+     * Update the widget options
+     * @param <type> $new_instance
+     * @param <type> $old_instance
+     * @return <type>
+     */
     function update( $new_instance, $old_instance ) {
         $instance = $old_instance;
 
@@ -75,6 +91,11 @@ class Rolo_Gmap extends WP_Widget {
         return $instance;
     }
 
+    /**
+     * Display Widget form
+     *
+     * @param <type> $instance
+     */
     function form( $instance ) {
     //Defaults
         $instance = wp_parse_args( (array) $instance, array('account' => '', 'title' => '', 'width' => '250', 'height' => '250', 'zoom' => '15', 'maptype' => 'roadmap' ) );
@@ -128,10 +149,9 @@ class Rolo_Gmap extends WP_Widget {
 </p>
 
     <?php }
-
-
 }
 
+// hook it
 add_action( 'widgets_init', 'rolo_gmap_init' );
 function rolo_gmap_init() {
     register_widget('Rolo_Gmap');

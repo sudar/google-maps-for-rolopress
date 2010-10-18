@@ -28,7 +28,6 @@ define( GMAP_ROLO_DIR, WP_PLUGIN_URL.'/'.str_replace(basename( __FILE__),"",plug
 // Load Language
 load_plugin_textdomain('gmap-rolo', false, GMAP_ROLO_DIR . 'language');
 
-
 // Launch the plugin.
 add_action( 'plugins_loaded', 'gmap_rolo_plugin_init' );
 

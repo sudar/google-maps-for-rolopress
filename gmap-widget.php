@@ -49,7 +49,7 @@ class Rolo_Gmap extends WP_Widget {
 
     function Rolo_Gmap() {
         $widget_ops = array('classname' => 'rolo_gmap_widget', 'description' => __( "Display a Google Map for your Contact and Company addresses") );
-        $this->WP_Widget('gmap', __('Google Maps'), $widget_ops);
+        $this->WP_Widget('gmap', __('Google Maps for RoloPress'), $widget_ops);
     }
 
     function widget( $args, $instance ) {
@@ -98,7 +98,7 @@ class Rolo_Gmap extends WP_Widget {
      */
     function form( $instance ) {
     //Defaults
-        $instance = wp_parse_args( (array) $instance, array('account' => '', 'title' => '', 'width' => '250', 'height' => '250', 'zoom' => '15', 'maptype' => 'roadmap' ) );
+        $instance = wp_parse_args( (array) $instance, array('account' => '', 'title' => 'Map', 'width' => '250', 'height' => '250', 'zoom' => '15', 'maptype' => 'roadmap' ) );
 
         $title = esc_attr($instance['title']);
         $width = (int)$instance['width'];

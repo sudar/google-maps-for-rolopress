@@ -58,7 +58,7 @@ class Rolo_Gmap extends WP_Widget {
             if ( rolo_type_is( 'contact' ) )  $address = ( rolo_contact_address(get_the_ID())) ;
             if ( rolo_type_is( 'company' ) )  $address = ( rolo_company_address(get_the_ID())) ;
 
-            if ($address != '') {
+            if (trim($address) != '') {
                 // if the address is not empty
                 $title = apply_filters('widget_title', empty($instance['title']) ? __('', 'rolopress') : $instance['title']);
                 echo $before_widget;

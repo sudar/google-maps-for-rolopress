@@ -1,7 +1,7 @@
 === Google Maps for RoloPress ===
 Contributors: rolopress, SlipFire LLC.
 Requires at least: WordPress 2.8, RoloPress Core 1.4
-Tested up to: WordPress 2.8.1, , RoloPress Core 1.4
+Tested up to: WordPress 2.8.1, , RoloPress Core 1.5
 Stable tag: 0.1
 
 Display a Google Map from your contact and company address in any widget area of RoloPress.

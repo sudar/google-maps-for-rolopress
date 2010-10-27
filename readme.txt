@@ -8,7 +8,7 @@ Display a Google Map from your contact and company address in any widget area of
 
 == Installation ==
 
-1. Upload the twitter-tweets-for-rolopress folder to your /wp-content/plugins/ directory.
+1. Upload the google-map-for-rolopress folder to your /wp-content/plugins/ directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
 1. Add the widget to your sidebar from Appearance->Widgets and configure the widget options.
 
